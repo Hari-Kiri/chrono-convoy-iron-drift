@@ -1,0 +1,644 @@
+{
+  "schema_id": "chrono-convoy-adaptive-audio-v1",
+  "version": "1.0.0-sprint1",
+  "ticket_id": "AUD-01",
+  "clickup_task_id": "z8rctemh4x",
+  "audio_engine_target": "LibGDX Audio (Music streamed stems + Sound pooled SFX)",
+  "mastering_standards": {
+    "sample_rate_hz": 44100,
+    "bit_depth": 16,
+    "channels": 1,
+    "stem_bpm": 120.0,
+    "time_signature": "4/4",
+    "loop_bars": 4,
+    "loop_duration_sec": 8.0,
+    "loop_length_samples": 352800,
+    "zero_crossing_verified": true,
+    "target_bus_lufs": -14.0,
+    "max_true_peak_dbfs": -0.9
+  },
+  "telemetry_inputs": {
+    "convoy_velocity_mps": {
+      "source_config": "docs/design/convoy_config.json#/locomotive",
+      "stopped_mps": 0.0,
+      "min_cruise_speed_mps": 6.0,
+      "base_max_speed_mps": 28.0,
+      "overclock_max_speed_mps": 38.0,
+      "normalization_formula": "v_norm = clamp(convoy_velocity_mps / 38.0, 0.0, 1.0)"
+    },
+    "reactor_heat": {
+      "source_config": "docs/design/convoy_config.json#/reactor/overclock",
+      "min_heat": 0.0,
+      "thermal_warning_threshold": 75.0,
+      "thermal_shutdown_threshold": 100.0,
+      "normalization_formula": "heat_norm = clamp(reactor_heat / 100.0, 0.0, 1.0)",
+      "states": {
+        "NOMINAL": {
+          "heat_range": [
+            0.0,
+            59.9
+          ],
+          "overclock_active": false
+        },
+        "ELEVATED": {
+          "heat_range": [
+            60.0,
+            74.9
+          ],
+          "overclock_active": true
+        },
+        "WARNING": {
+          "heat_range": [
+            75.0,
+            99.9
+          ],
+          "overclock_active": true,
+          "triggers_alarm": true
+        },
+        "THERMAL_SHUTDOWN": {
+          "heat_range": [
+            100.0,
+            100.0
+          ],
+          "duration_sec": 5.0,
+          "triggers_alarm": true
+        }
+      }
+    },
+    "combat_threat_level": {
+      "range": [
+        0.0,
+        1.0
+      ],
+      "description": "Normalized nearby raider threat weight sum (0.0 = clear desert, 1.0 = heavy siege / Scrap Canyon)"
+    }
+  },
+  "vertical_layering_stems": [
+    {
+      "id": "stem_01_desert_idle",
+      "file": "stem_01_desert_idle.wav",
+      "libgdx_type": "Music",
+      "role": "Atmospheric desert wind pad, D1/A1 sub-drone & metallic heat shimmer",
+      "loop": true,
+      "bpm": 120.0,
+      "duration_sec": 8.0,
+      "samples": 352800,
+      "base_gain": 0.85,
+      "velocity_crossfade_curve": {
+        "input": "v_norm",
+        "interpolation": "smoothstep",
+        "keyframes": [
+          {
+            "v_norm": 0.0,
+            "velocity_mps": 0.0,
+            "gain": 1.0
+          },
+          {
+            "v_norm": 0.16,
+            "velocity_mps": 6.0,
+            "gain": 0.88
+          },
+          {
+            "v_norm": 0.5,
+            "velocity_mps": 19.0,
+            "gain": 0.62
+          },
+          {
+            "v_norm": 0.74,
+            "velocity_mps": 28.0,
+            "gain": 0.45
+          },
+          {
+            "v_norm": 1.0,
+            "velocity_mps": 38.0,
+            "gain": 0.35
+          }
+        ]
+      },
+      "reactor_heat_modulation": {
+        "input": "heat_norm",
+        "keyframes": [
+          {
+            "heat_norm": 0.0,
+            "gain_multiplier": 1.0,
+            "pitch_multiplier": 1.0
+          },
+          {
+            "heat_norm": 0.75,
+            "gain_multiplier": 0.9,
+            "pitch_multiplier": 1.01
+          },
+          {
+            "heat_norm": 1.0,
+            "gain_multiplier": 1.15,
+            "pitch_multiplier": 0.96
+          }
+        ]
+      },
+      "pitch_shift_curve": {
+        "formula": "pitch = 0.98 + 0.04 * v_norm",
+        "min_pitch": 0.96,
+        "max_pitch": 1.04
+      },
+      "diagnostics": {
+        "file": "stem_01_desert_idle.wav",
+        "samples": 352800,
+        "duration_sec": 8.0,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -2.5,
+        "rms_dbfs": -10.83,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 705644
+      }
+    },
+    {
+      "id": "stem_02_locomotive_chug",
+      "file": "stem_02_locomotive_chug.wav",
+      "libgdx_type": "Music",
+      "role": "Rhythmic 16th-note piston/steam chug and D-Phrygian industrial bass groove",
+      "loop": true,
+      "bpm": 120.0,
+      "duration_sec": 8.0,
+      "samples": 352800,
+      "base_gain": 0.92,
+      "velocity_crossfade_curve": {
+        "input": "v_norm",
+        "interpolation": "smoothstep",
+        "keyframes": [
+          {
+            "v_norm": 0.0,
+            "velocity_mps": 0.0,
+            "gain": 0.0
+          },
+          {
+            "v_norm": 0.08,
+            "velocity_mps": 3.0,
+            "gain": 0.35
+          },
+          {
+            "v_norm": 0.16,
+            "velocity_mps": 6.0,
+            "gain": 0.68
+          },
+          {
+            "v_norm": 0.74,
+            "velocity_mps": 28.0,
+            "gain": 0.96
+          },
+          {
+            "v_norm": 1.0,
+            "velocity_mps": 38.0,
+            "gain": 1.0
+          }
+        ]
+      },
+      "reactor_heat_modulation": {
+        "input": "heat_norm",
+        "keyframes": [
+          {
+            "heat_norm": 0.0,
+            "gain_multiplier": 1.0,
+            "pitch_multiplier": 1.0
+          },
+          {
+            "heat_norm": 0.75,
+            "gain_multiplier": 1.05,
+            "pitch_multiplier": 1.035
+          },
+          {
+            "heat_norm": 1.0,
+            "gain_multiplier": 0.4,
+            "pitch_multiplier": 0.88
+          }
+        ]
+      },
+      "pitch_shift_curve": {
+        "formula": "pitch = 0.92 + 0.16 * v_norm + 0.04 * max(0.0, (heat_norm - 0.60) / 0.40)",
+        "min_pitch": 0.88,
+        "max_pitch": 1.12
+      },
+      "diagnostics": {
+        "file": "stem_02_locomotive_chug.wav",
+        "samples": 352800,
+        "duration_sec": 8.0,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.8,
+        "rms_dbfs": -13.14,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 705644
+      }
+    },
+    {
+      "id": "stem_03_raider_percussion",
+      "file": "stem_03_raider_percussion.wav",
+      "libgdx_type": "Music",
+      "role": "Driving industrial war-drums, anvil backbeats, and syncopated metallic percussion",
+      "loop": true,
+      "bpm": 120.0,
+      "duration_sec": 8.0,
+      "samples": 352800,
+      "base_gain": 0.9,
+      "velocity_crossfade_curve": {
+        "input": "v_norm",
+        "interpolation": "smoothstep",
+        "keyframes": [
+          {
+            "v_norm": 0.0,
+            "velocity_mps": 0.0,
+            "gain": 0.0
+          },
+          {
+            "v_norm": 0.25,
+            "velocity_mps": 9.5,
+            "gain": 0.15
+          },
+          {
+            "v_norm": 0.45,
+            "velocity_mps": 17.1,
+            "gain": 0.65
+          },
+          {
+            "v_norm": 0.74,
+            "velocity_mps": 28.0,
+            "gain": 0.92
+          },
+          {
+            "v_norm": 1.0,
+            "velocity_mps": 38.0,
+            "gain": 1.0
+          }
+        ]
+      },
+      "threat_and_heat_boost": {
+        "formula": "effective_gain = max(velocity_gain, 0.85 * combat_threat_level) * (1.0 + 0.10 * heat_norm)"
+      },
+      "pitch_shift_curve": {
+        "formula": "pitch = 0.96 + 0.08 * v_norm + 0.03 * heat_norm",
+        "min_pitch": 0.95,
+        "max_pitch": 1.07
+      },
+      "diagnostics": {
+        "file": "stem_03_raider_percussion.wav",
+        "samples": 352800,
+        "duration_sec": 8.0,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.5,
+        "rms_dbfs": -18.54,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 705644
+      }
+    },
+    {
+      "id": "stem_04_overdrive_synth",
+      "file": "stem_04_overdrive_synth.wav",
+      "libgdx_type": "Music",
+      "role": "Aggressive distorted D-Phrygian arp/lead synth and reactor overdrive harmonic layer",
+      "loop": true,
+      "bpm": 120.0,
+      "duration_sec": 8.0,
+      "samples": 352800,
+      "base_gain": 0.88,
+      "velocity_crossfade_curve": {
+        "input": "v_norm",
+        "interpolation": "smoothstep",
+        "keyframes": [
+          {
+            "v_norm": 0.0,
+            "velocity_mps": 0.0,
+            "gain": 0.0
+          },
+          {
+            "v_norm": 0.55,
+            "velocity_mps": 20.9,
+            "gain": 0.0
+          },
+          {
+            "v_norm": 0.74,
+            "velocity_mps": 28.0,
+            "gain": 0.55
+          },
+          {
+            "v_norm": 0.88,
+            "velocity_mps": 33.4,
+            "gain": 0.88
+          },
+          {
+            "v_norm": 1.0,
+            "velocity_mps": 38.0,
+            "gain": 1.0
+          }
+        ]
+      },
+      "reactor_heat_crossfade_curve": {
+        "input": "heat_norm",
+        "interpolation": "smoothstep",
+        "keyframes": [
+          {
+            "heat_norm": 0.0,
+            "reactor_heat": 0.0,
+            "gain_floor": 0.0,
+            "pitch_shift_semitones": 0.0
+          },
+          {
+            "heat_norm": 0.55,
+            "reactor_heat": 55.0,
+            "gain_floor": 0.2,
+            "pitch_shift_semitones": 0.0
+          },
+          {
+            "heat_norm": 0.75,
+            "reactor_heat": 75.0,
+            "gain_floor": 0.78,
+            "pitch_shift_semitones": 0.5
+          },
+          {
+            "heat_norm": 0.92,
+            "reactor_heat": 92.0,
+            "gain_floor": 0.96,
+            "pitch_shift_semitones": 1.2
+          },
+          {
+            "heat_norm": 1.0,
+            "reactor_heat": 100.0,
+            "gain_floor": 1.0,
+            "pitch_shift_semitones": 2.0
+          }
+        ],
+        "combined_gain_formula": "gain = clamp(max(velocity_gain, heat_gain_floor), 0.0, 1.0)"
+      },
+      "pitch_shift_curve": {
+        "formula": "pitch = 1.00 + 0.06 * max(0.0, (v_norm - 0.60) / 0.40) + 0.06 * max(0.0, (heat_norm - 0.55) / 0.45)",
+        "min_pitch": 1.0,
+        "max_pitch": 1.12
+      },
+      "diagnostics": {
+        "file": "stem_04_overdrive_synth.wav",
+        "samples": 352800,
+        "duration_sec": 8.0,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.5,
+        "rms_dbfs": -13.95,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 705644
+      }
+    }
+  ],
+  "crossfade_smoothing": {
+    "attack_slew_rate_per_sec": 1.8,
+    "release_slew_rate_per_sec": 0.85,
+    "sync_lock_mode": "PHASE_LOCKED_MASTER_CLOCK",
+    "master_clock_stem": "stem_01_desert_idle",
+    "resync_drift_threshold_ms": 8.0
+  },
+  "priority_ducking_and_buses": {
+    "buses": {
+      "MASTER": {
+        "default_gain": 1.0,
+        "limiter_ceiling_dbfs": -0.5
+      },
+      "MUSIC_STEMS": {
+        "default_gain": 0.82,
+        "ducked_gain_combat": 0.62,
+        "ducked_gain_alarm": 0.5
+      },
+      "COMBAT_SFX": {
+        "default_gain": 0.95,
+        "max_voices": 12
+      },
+      "CRITICAL_ALERTS": {
+        "default_gain": 1.0,
+        "max_voices": 4
+      }
+    },
+    "ducking_rules": [
+      {
+        "trigger_sfx": "sfx_heavy_ram_impact",
+        "target_bus": "MUSIC_STEMS",
+        "attenuation_db": -4.5,
+        "attack_ms": 15,
+        "hold_ms": 350,
+        "release_ms": 600
+      },
+      {
+        "trigger_sfx": "sfx_reactor_alarm",
+        "target_bus": "MUSIC_STEMS",
+        "attenuation_db": -5.0,
+        "attack_ms": 25,
+        "hold_ms": 1200,
+        "release_ms": 500
+      },
+      {
+        "trigger_sfx": "sfx_artillery_fire",
+        "target_bus": "MUSIC_STEMS",
+        "attenuation_db": -2.5,
+        "attack_ms": 10,
+        "hold_ms": 200,
+        "release_ms": 400
+      }
+    ]
+  },
+  "combat_sfx_cues": {
+    "sfx_artillery_fire": {
+      "file": "sfx_artillery_fire.wav",
+      "libgdx_type": "Sound",
+      "bus": "COMBAT_SFX",
+      "priority": 85,
+      "max_concurrent_voices": 4,
+      "cooldown_ms": 180,
+      "default_volume": 0.92,
+      "volume_randomization": [
+        -0.05,
+        0.05
+      ],
+      "pitch_randomization": [
+        0.94,
+        1.06
+      ],
+      "watt_scaling": {
+        "input": "artillery_watts",
+        "pitch_formula": "pitch = base_pitch * (0.95 + 0.002 * artillery_watts)",
+        "volume_formula": "vol = clamp(0.82 + 0.003 * artillery_watts, 0.80, 1.00)"
+      },
+      "spatial_attenuation": {
+        "ref_distance_m": 18.0,
+        "max_distance_m": 160.0,
+        "rolloff_factor": 1.0
+      },
+      "diagnostics": {
+        "file": "sfx_artillery_fire.wav",
+        "samples": 72765,
+        "duration_sec": 1.65,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.0,
+        "rms_dbfs": -20.08,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 145574
+      }
+    },
+    "sfx_shield_deflect": {
+      "file": "sfx_shield_deflect.wav",
+      "libgdx_type": "Sound",
+      "bus": "COMBAT_SFX",
+      "priority": 80,
+      "max_concurrent_voices": 5,
+      "cooldown_ms": 90,
+      "default_volume": 0.88,
+      "volume_randomization": [
+        -0.06,
+        0.04
+      ],
+      "pitch_randomization": [
+        0.92,
+        1.1
+      ],
+      "shield_ratio_modulation": {
+        "input": "shield_hp_ratio",
+        "pitch_formula": "pitch = 0.88 + 0.20 * shield_hp_ratio"
+      },
+      "spatial_attenuation": {
+        "ref_distance_m": 15.0,
+        "max_distance_m": 120.0,
+        "rolloff_factor": 1.1
+      },
+      "diagnostics": {
+        "file": "sfx_shield_deflect.wav",
+        "samples": 41895,
+        "duration_sec": 0.95,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.2,
+        "rms_dbfs": -20.72,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 83834
+      }
+    },
+    "sfx_heavy_ram_impact": {
+      "file": "sfx_heavy_ram_impact.wav",
+      "libgdx_type": "Sound",
+      "bus": "COMBAT_SFX",
+      "priority": 95,
+      "max_concurrent_voices": 2,
+      "cooldown_ms": 250,
+      "default_volume": 0.98,
+      "volume_randomization": [
+        -0.03,
+        0.02
+      ],
+      "pitch_randomization": [
+        0.93,
+        1.04
+      ],
+      "impulse_scaling": {
+        "input": "relative_impact_speed_mps",
+        "volume_formula": "vol = clamp(0.65 + 0.012 * relative_impact_speed_mps, 0.65, 1.00)",
+        "pitch_formula": "pitch = clamp(1.05 - 0.004 * relative_impact_speed_mps, 0.88, 1.05)"
+      },
+      "spatial_attenuation": {
+        "ref_distance_m": 25.0,
+        "max_distance_m": 180.0,
+        "rolloff_factor": 0.85
+      },
+      "diagnostics": {
+        "file": "sfx_heavy_ram_impact.wav",
+        "samples": 63945,
+        "duration_sec": 1.45,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -0.9,
+        "rms_dbfs": -17.52,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 127934
+      }
+    },
+    "sfx_reactor_alarm": {
+      "file": "sfx_reactor_alarm.wav",
+      "libgdx_type": "Sound",
+      "bus": "CRITICAL_ALERTS",
+      "priority": 100,
+      "max_concurrent_voices": 1,
+      "cooldown_ms": 1500,
+      "default_volume": 0.9,
+      "volume_randomization": [
+        0.0,
+        0.0
+      ],
+      "pitch_randomization": [
+        1.0,
+        1.0
+      ],
+      "thermal_escalation": {
+        "trigger_threshold_heat": 75.0,
+        "shutdown_threshold_heat": 100.0,
+        "pitch_formula": "pitch = 1.0 + 0.12 * clamp((reactor_heat - 75.0) / 25.0, 0.0, 1.0)"
+      },
+      "spatial_attenuation": {
+        "diegetic_2d_cockpit": true
+      },
+      "diagnostics": {
+        "file": "sfx_reactor_alarm.wav",
+        "samples": 66150,
+        "duration_sec": 1.5,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.5,
+        "rms_dbfs": -6.24,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 132344
+      }
+    },
+    "sfx_track_switch": {
+      "file": "sfx_track_switch.wav",
+      "libgdx_type": "Sound",
+      "bus": "CRITICAL_ALERTS",
+      "priority": 90,
+      "max_concurrent_voices": 2,
+      "cooldown_ms": 300,
+      "default_volume": 0.9,
+      "volume_randomization": [
+        -0.04,
+        0.04
+      ],
+      "pitch_randomization": [
+        0.97,
+        1.03
+      ],
+      "spatial_attenuation": {
+        "diegetic_2d_cockpit": true
+      },
+      "diagnostics": {
+        "file": "sfx_track_switch.wav",
+        "samples": 37485,
+        "duration_sec": 0.85,
+        "sample_rate_hz": 44100,
+        "bit_depth": 16,
+        "channels": 1,
+        "peak_dbfs": -1.2,
+        "rms_dbfs": -18.86,
+        "start_sample_int16": 0,
+        "end_sample_int16": 0,
+        "size_bytes": 75014
+      }
+    }
+  }
+}

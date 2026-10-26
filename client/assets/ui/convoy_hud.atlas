@@ -1,0 +1,391 @@
+convoy_hud.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+bar_braking_fill
+  rotate: false
+  xy: 208, 276
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+bar_tonnage_fill
+  rotate: false
+  xy: 140, 276
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+bar_tonnage_track
+  rotate: false
+  xy: 514, 236
+  size: 96, 22
+  split: 12, 12, 6, 6
+  pad: 4, 4, 3, 3
+  orig: 96, 22
+  offset: 0, 0
+  index: -1
+btn_brass_checked
+  rotate: false
+  xy: 720, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_brass_disabled
+  rotate: false
+  xy: 652, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_brass_down
+  rotate: false
+  xy: 584, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_brass_over
+  rotate: false
+  xy: 516, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_brass_up
+  rotate: false
+  xy: 448, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_emergency_down
+  rotate: false
+  xy: 856, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+btn_emergency_up
+  rotate: false
+  xy: 788, 136
+  size: 64, 36
+  split: 10, 10, 8, 8
+  pad: 8, 8, 6, 6
+  orig: 64, 36
+  offset: 0, 0
+  index: -1
+convoy_mono
+  rotate: false
+  xy: 264, 4
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+convoy_title
+  rotate: false
+  xy: 524, 4
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+default
+  rotate: false
+  xy: 4, 4
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+gauge_temp_fill_critical
+  rotate: false
+  xy: 72, 276
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+gauge_temp_fill_nominal
+  rotate: false
+  xy: 4, 276
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+gauge_temp_track
+  rotate: false
+  xy: 414, 236
+  size: 96, 22
+  split: 12, 12, 6, 6
+  pad: 4, 4, 3, 3
+  orig: 96, 22
+  offset: 0, 0
+  index: -1
+icon_brake_caliper
+  rotate: false
+  xy: 224, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon_cargo_tonnage
+  rotate: false
+  xy: 188, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon_junction_left
+  rotate: false
+  xy: 924, 136
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+icon_junction_right
+  rotate: false
+  xy: 964, 136
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+icon_junction_straight
+  rotate: false
+  xy: 4, 236
+  size: 36, 36
+  orig: 36, 36
+  offset: 0, 0
+  index: -1
+icon_reactor_artillery
+  rotate: false
+  xy: 80, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon_reactor_shields
+  rotate: false
+  xy: 44, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon_reactor_thrusters
+  rotate: false
+  xy: 116, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+icon_temp_overheat
+  rotate: false
+  xy: 152, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+led_status_amber
+  rotate: false
+  xy: 734, 236
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+led_status_green
+  rotate: false
+  xy: 714, 236
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+led_status_red
+  rotate: false
+  xy: 754, 236
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+marker_stopping_threshold
+  rotate: false
+  xy: 398, 236
+  size: 12, 28
+  orig: 12, 28
+  offset: 0, 0
+  index: -1
+overlay_track_switcher_warning
+  rotate: false
+  xy: 228, 136
+  size: 128, 64
+  split: 18, 18, 16, 16
+  pad: 12, 12, 14, 14
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+panel_brass_deck
+  rotate: false
+  xy: 784, 4
+  size: 128, 96
+  split: 18, 18, 18, 18
+  pad: 14, 14, 14, 14
+  orig: 128, 96
+  offset: 0, 0
+  index: -1
+panel_crt_screen
+  rotate: false
+  xy: 28, 136
+  size: 96, 72
+  split: 14, 14, 14, 14
+  pad: 10, 10, 10, 10
+  orig: 96, 72
+  offset: 0, 0
+  index: -1
+panel_iron_inset
+  rotate: false
+  xy: 360, 136
+  size: 64, 64
+  split: 10, 10, 10, 10
+  pad: 8, 8, 8, 8
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+panel_modal_warning
+  rotate: false
+  xy: 128, 136
+  size: 96, 72
+  split: 16, 16, 20, 14
+  pad: 12, 12, 18, 10
+  orig: 96, 72
+  offset: 0, 0
+  index: -1
+scroll_knob_brass
+  rotate: false
+  xy: 296, 236
+  size: 14, 32
+  split: 4, 4, 6, 6
+  pad: 2, 2, 2, 2
+  orig: 14, 32
+  offset: 0, 0
+  index: -1
+scroll_track_iron
+  rotate: false
+  xy: 428, 136
+  size: 16, 64
+  split: 4, 4, 8, 8
+  pad: 2, 2, 2, 2
+  orig: 16, 64
+  offset: 0, 0
+  index: -1
+slider_fill_artillery_amber
+  rotate: false
+  xy: 842, 236
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+slider_fill_shields_cyan
+  rotate: false
+  xy: 774, 236
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+slider_fill_thrusters_emerald
+  rotate: false
+  xy: 910, 236
+  size: 64, 14
+  split: 8, 8, 4, 4
+  pad: 2, 2, 2, 2
+  orig: 64, 14
+  offset: 0, 0
+  index: -1
+slider_knob_brass
+  rotate: false
+  xy: 314, 236
+  size: 24, 28
+  orig: 24, 28
+  offset: 0, 0
+  index: -1
+slider_knob_down
+  rotate: false
+  xy: 370, 236
+  size: 24, 28
+  orig: 24, 28
+  offset: 0, 0
+  index: -1
+slider_knob_over
+  rotate: false
+  xy: 342, 236
+  size: 24, 28
+  orig: 24, 28
+  offset: 0, 0
+  index: -1
+slider_track_brass
+  rotate: false
+  xy: 614, 236
+  size: 96, 20
+  split: 12, 12, 6, 6
+  pad: 4, 4, 3, 3
+  orig: 96, 20
+  offset: 0, 0
+  index: -1
+slider_track_vertical
+  rotate: false
+  xy: 4, 136
+  size: 20, 96
+  split: 6, 6, 12, 12
+  pad: 3, 3, 4, 4
+  orig: 20, 96
+  offset: 0, 0
+  index: -1
+touchpad_knob_brass
+  rotate: false
+  xy: 260, 236
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+touchpad_ring_brass
+  rotate: false
+  xy: 916, 4
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+white
+  rotate: false
+  xy: 288, 276
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+white_pixel
+  rotate: false
+  xy: 276, 276
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

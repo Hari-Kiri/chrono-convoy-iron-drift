@@ -1,0 +1,153 @@
+{
+  "simulation_metadata": {
+    "n_runs": 1000,
+    "ticks_per_run": 60,
+    "tick_duration_sec": 60,
+    "sectors_per_run": 15,
+    "seed": 42069,
+    "config_version": "1.0.0-sprint1"
+  },
+  "metrics": {
+    "total_faucets_credits": {
+      "min": 10575.39,
+      "p10": 15507.186,
+      "p50": 20757.486,
+      "mean": 20877.0,
+      "p90": 26198.616,
+      "max": 39471.359,
+      "std": 4038.738
+    },
+    "total_sinks_credits": {
+      "min": 11291.72,
+      "p10": 14916.457,
+      "p50": 17333.475,
+      "mean": 17396.343,
+      "p90": 20015.452,
+      "max": 26215.191,
+      "std": 1990.837
+    },
+    "net_currency_velocity_credits_per_hr": {
+      "min": -2390.074,
+      "p10": 337.978,
+      "p50": 3465.005,
+      "mean": 3480.657,
+      "p90": 6498.012,
+      "max": 13256.169,
+      "std": 2314.452
+    },
+    "final_player_credits": {
+      "min": 150.0,
+      "p10": 1446.173,
+      "p50": 4465.005,
+      "mean": 4515.628,
+      "p90": 7498.012,
+      "max": 14256.169,
+      "std": 2256.764
+    },
+    "sink_to_faucet_ratio": {
+      "min": 0.664,
+      "p10": 0.747,
+      "p50": 0.833,
+      "mean": 0.848,
+      "p90": 0.977,
+      "max": 1.226,
+      "std": 0.089
+    },
+    "inflation_index_60_ticks": {
+      "min": 1.011,
+      "p10": 1.02,
+      "p50": 1.028,
+      "mean": 1.028,
+      "p90": 1.035,
+      "max": 1.046,
+      "std": 0.006
+    },
+    "cooling_rods_burned_per_run": {
+      "min": 49.187,
+      "p10": 58.799,
+      "p50": 65.019,
+      "mean": 65.103,
+      "p90": 71.651,
+      "max": 80.089,
+      "std": 4.955
+    },
+    "cooling_rod_share_of_total_sinks": {
+      "min": 0.323,
+      "p10": 0.387,
+      "p50": 0.437,
+      "mean": 0.438,
+      "p90": 0.49,
+      "max": 0.546,
+      "std": 0.038
+    }
+  },
+  "mean_faucet_breakdown_credits": {
+    "oasis_arbitrage": 7181.9,
+    "raider_bounties": 3496.08,
+    "combat_salvage": 10199.02
+  },
+  "mean_sink_breakdown_credits": {
+    "reactor_cooling_rods": 7568.99,
+    "hull_repair": 3329.73,
+    "ammo_fabrication": 1806.57,
+    "market_transaction_fee_5pct": 2230.88,
+    "oasis_infra_and_maintenance": 2460.17
+  },
+  "commodity_price_bounds_observed": {
+    "purified_water": {
+      "min": 27.427,
+      "p10": 33.189,
+      "p50": 45.523,
+      "mean": 42.647,
+      "p90": 49.545,
+      "max": 53.688,
+      "std": 6.741
+    },
+    "scrap_alloy": {
+      "min": 37.895,
+      "p10": 46.177,
+      "p50": 60.871,
+      "mean": 57.045,
+      "p90": 64.171,
+      "max": 68.803,
+      "std": 7.551
+    },
+    "crude_promethium": {
+      "min": 88.376,
+      "p10": 102.972,
+      "p50": 143.331,
+      "mean": 132.066,
+      "p90": 149.843,
+      "max": 161.63,
+      "std": 19.887
+    },
+    "reactor_cells": {
+      "min": 113.925,
+      "p10": 144.687,
+      "p50": 207.251,
+      "mean": 191.427,
+      "p90": 222.591,
+      "max": 241.151,
+      "std": 32.191
+    },
+    "cooling_rods": {
+      "min": 65.908,
+      "p10": 77.847,
+      "p50": 91.378,
+      "mean": 97.921,
+      "p90": 124.627,
+      "max": 134.162,
+      "std": 18.903
+    }
+  },
+  "verification": {
+    "non_hyperinflationary_verified": true,
+    "target_sink_to_faucet_band": [
+      0.78,
+      0.94
+    ],
+    "observed_sink_to_faucet_p50": 0.833,
+    "observed_inflation_index_p50": 1.028,
+    "observed_inflation_index_p90": 1.035
+  }
+}

@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.chronoconvoy.qa'
+version = '1.0.0-SPRINT1'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    gdxVersion = '1.12.1'
+    junitVersion = '5.10.2'
+}
+
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx:${gdxVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-box2d:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-box2d-platform:${gdxVersion}:natives-desktop"
+
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+}

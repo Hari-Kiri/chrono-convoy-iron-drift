@@ -1,0 +1,522 @@
+{
+  "schema_id": "chrono-convoy-iron-drift-config-v1",
+  "version": "1.0.0-sprint1",
+  "game_title": "Chrono-Convoy: Iron Drift",
+  "tick_rate_hz": 60,
+  "physics_step_sec": 0.0166667,
+  "backend_economy_tick_sec": 60,
+  "deterministic_seed_default": 42069,
+  "locomotive": {
+    "id": "iron_drifter_mk1",
+    "name": "Iron Drifter Mk.I Armored Locomotive",
+    "base_pull_force_n": 180000.0,
+    "max_pull_force_n": 288000.0,
+    "dry_mass_kg": 25000.0,
+    "base_max_speed_mps": 28.0,
+    "overclock_max_speed_mps": 38.0,
+    "min_cruise_speed_mps": 6.0,
+    "braking_force_n": 220000.0,
+    "emergency_brake_multiplier": 1.45,
+    "hull_hp": 1200,
+    "base_armor_rating": 25.0,
+    "ramming_prow_multiplier": 1.35,
+    "max_carriage_slots": 4,
+    "dimensions_m": {
+      "length": 14.0,
+      "width": 4.2,
+      "height": 4.8
+    },
+    "box2d_coupler_joint": {
+      "type": "RevoluteDistanceHybrid",
+      "frequency_hz": 8.5,
+      "damping_ratio": 0.82,
+      "max_motor_torque_nm": 95000.0,
+      "angular_limit_deg": 24.0,
+      "slack_tolerance_m": 0.15,
+      "break_force_n": 650000.0
+    }
+  },
+  "mass_to_momentum_curves": {
+    "formula_acceleration": "a = (F_pull * M_thruster_mult - F_drag - F_grade) / M_total",
+    "formula_total_mass": "M_total = M_loco_dry + sum(M_carriage_dry_i + M_cargo_i)",
+    "rolling_friction_coeff_mu": 0.018,
+    "aerodynamic_drag_coeff_cd": 0.65,
+    "grade_gravity_mps2": 9.81,
+    "momentum_retention_factor": 0.94,
+    "braking_distance_curve": {
+      "formula": "d_brake = (v^2 / (2 * (F_brake / M_total))) * (1 + k_cargo_inertia * (M_cargo_total / M_loco_dry)^beta)",
+      "k_cargo_inertia": 0.42,
+      "beta_exponent": 1.15
+    },
+    "ramming_impulse_curve": {
+      "formula": "impulse_damage = k_ram * (M_total / 1000.0) * (v_rel ^ alpha) * prow_mult",
+      "k_ram": 0.55,
+      "alpha_velocity_exponent": 1.6,
+      "self_recoil_damage_ratio": 0.18,
+      "derailment_lateral_impulse_threshold_ns": 420000.0
+    }
+  },
+  "reactor": {
+    "total_watts_pool": 100,
+    "overclock_max_watts_pool": 130,
+    "allocation_step_watts": 5,
+    "default_allocation_watts": {
+      "shields": 30,
+      "artillery": 35,
+      "thrusters": 35
+    },
+    "subsystems": {
+      "shields": {
+        "min_watts": 0,
+        "max_watts": 60,
+        "optimal_watts": 35,
+        "base_capacity_hp": 400.0,
+        "max_capacity_hp": 900.0,
+        "recharge_rate_formula": "R_shield = R_base * ((W_shields + 5.0) / (W_opt + 5.0))^1.25",
+        "base_recharge_hp_per_sec": 18.0,
+        "damage_mitigation_formula": "mitigation = min(0.75, 0.15 + 0.01 * W_shields)",
+        "reboot_delay_sec_on_collapse": 4.5
+      },
+      "artillery": {
+        "min_watts": 0,
+        "max_watts": 60,
+        "optimal_watts": 35,
+        "fire_rate_multiplier_formula": "M_rof = 0.50 + 0.018 * W_artillery + 0.00012 * (W_artillery^2)",
+        "damage_multiplier_formula": "M_dmg = 0.75 + 0.010 * W_artillery",
+        "projectile_speed_multiplier_formula": "M_vel = 0.85 + 0.006 * W_artillery",
+        "min_multiplier": 0.5,
+        "max_multiplier": 2.012
+      },
+      "thrusters": {
+        "min_watts": 0,
+        "max_watts": 60,
+        "optimal_watts": 35,
+        "pull_force_multiplier_formula": "M_thrust = 0.60 + 0.0167 * W_thrusters",
+        "top_speed_multiplier_formula": "M_speed = 0.70 + 0.0125 * W_thrusters",
+        "lateral_stabilization_bonus_per_watt": 0.008
+      }
+    },
+    "overclock": {
+      "bonus_watts_per_rod": 30,
+      "rod_duration_sec": 20.0,
+      "cooling_rod_burn_rate_per_sec": 0.05,
+      "passive_thermal_cooling_rod_decay_per_min": 0.25,
+      "heat_accumulation_rate_per_sec": 6.5,
+      "passive_heat_dissipation_per_sec": 3.2,
+      "cooling_rod_flush_heat_reduction": 45.0,
+      "thermal_warning_threshold": 75.0,
+      "thermal_shutdown_threshold": 100.0,
+      "thermal_shutdown_duration_sec": 5.0,
+      "cooling_rod_sink_decay": {
+        "base_rod_cost_credits": 95.0,
+        "overclock_wear_multiplier": 1.32,
+        "reactor_degradation_sink_per_run_rods": 3.0
+      }
+    }
+  },
+  "carriages": [
+    {
+      "id": "gatling_turret_car",
+      "name": "Aegis Vulcan Gun-Carriage",
+      "role": "point_defense_anti_flanker",
+      "dry_mass_kg": 8500.0,
+      "max_cargo_capacity_kg": 2000.0,
+      "hull_hp": 650,
+      "armor_rating": 18.0,
+      "slot_cost": 1,
+      "length_m": 10.5,
+      "mounted_turret_id": "gatling_turret",
+      "power_draw_base_watts": 10,
+      "purchase_cost_credits": 450
+    },
+    {
+      "id": "shield_dome_car",
+      "name": "Aether-Projector Dome Carriage",
+      "role": "fleet_barrier_mitigation",
+      "dry_mass_kg": 9200.0,
+      "max_cargo_capacity_kg": 1500.0,
+      "hull_hp": 700,
+      "armor_rating": 22.0,
+      "slot_cost": 1,
+      "length_m": 10.5,
+      "mounted_turret_id": "arc_harpooneer",
+      "shield_radius_m": 26.0,
+      "shield_capacity_bonus_hp": 350.0,
+      "power_draw_base_watts": 15,
+      "purchase_cost_credits": 580
+    },
+    {
+      "id": "cargo_smelter_car",
+      "name": "Foundry Hopper & Ore Smelter Car",
+      "role": "high_capacity_haul_and_refining",
+      "dry_mass_kg": 11000.0,
+      "max_cargo_capacity_kg": 12000.0,
+      "hull_hp": 850,
+      "armor_rating": 20.0,
+      "slot_cost": 1,
+      "length_m": 12.0,
+      "mounted_turret_id": null,
+      "refining_conversion_rate_kg_per_sec": 15.0,
+      "scrap_to_alloy_yield_ratio": 1.35,
+      "power_draw_base_watts": 10,
+      "purchase_cost_credits": 520
+    },
+    {
+      "id": "artillery_mortar_car",
+      "name": "Ironclad 155mm Siege Mortar Car",
+      "role": "long_range_aoe_artillery",
+      "dry_mass_kg": 12500.0,
+      "max_cargo_capacity_kg": 2500.0,
+      "hull_hp": 750,
+      "armor_rating": 24.0,
+      "slot_cost": 1,
+      "length_m": 11.5,
+      "mounted_turret_id": "heavy_artillery",
+      "power_draw_base_watts": 15,
+      "purchase_cost_credits": 680
+    }
+  ],
+  "turrets": {
+    "gatling_turret": {
+      "id": "gatling_turret",
+      "name": "Twin 30mm Vulcan Sand-Sweeper",
+      "damage": 18.0,
+      "cooldown_ms": 125,
+      "fire_rate_rps": 8.0,
+      "projectile_speed_mps": 110.0,
+      "range_m": 65.0,
+      "spread_deg": 3.5,
+      "splash_radius_m": 0.0,
+      "ammo_scrap_cost": 0.25,
+      "watts_optimal": 20,
+      "overclock_dps_multiplier": 1.45,
+      "armor_penetration": 0.25
+    },
+    "heavy_artillery": {
+      "id": "heavy_artillery",
+      "name": "155mm Howitzer Siege Mortar",
+      "damage": 165.0,
+      "cooldown_ms": 2200,
+      "fire_rate_rps": 0.4545,
+      "projectile_speed_mps": 58.0,
+      "range_m": 140.0,
+      "spread_deg": 1.8,
+      "splash_radius_m": 8.5,
+      "ammo_scrap_cost": 3.5,
+      "watts_optimal": 35,
+      "overclock_dps_multiplier": 1.6,
+      "armor_penetration": 0.7
+    },
+    "arc_harpooneer": {
+      "id": "arc_harpooneer",
+      "name": "Electro-Magnetic Tether & EMP Harpoon",
+      "damage": 75.0,
+      "cooldown_ms": 1600,
+      "fire_rate_rps": 0.625,
+      "projectile_speed_mps": 85.0,
+      "range_m": 55.0,
+      "spread_deg": 0.8,
+      "splash_radius_m": 2.5,
+      "tether_drag_force_n": 45000.0,
+      "emp_slow_factor": 0.45,
+      "ammo_scrap_cost": 2.0,
+      "watts_optimal": 25,
+      "overclock_dps_multiplier": 1.5,
+      "armor_penetration": 0.55
+    }
+  },
+  "raiders": [
+    {
+      "id": "sand_skiff_flanker",
+      "name": "Rust-Vulture Sand Skiff",
+      "ai_role": "flanker_harasser",
+      "mass_kg": 1850.0,
+      "max_speed_mps": 36.0,
+      "hp": 220,
+      "armor": 6.0,
+      "threat_weight": 1.0,
+      "preferred_range_m": 28.0,
+      "weapon_dps": 22.0,
+      "ramming_resistance": 0.25,
+      "bounty_credits": 35,
+      "loot_table": {
+        "scrap_alloy": {
+          "chance": 0.85,
+          "min_qty": 2,
+          "max_qty": 5
+        },
+        "reactor_cells": {
+          "chance": 0.18,
+          "min_qty": 1,
+          "max_qty": 1
+        },
+        "cooling_rods": {
+          "chance": 0.12,
+          "min_qty": 1,
+          "max_qty": 1
+        }
+      }
+    },
+    {
+      "id": "iron_rammer_brute",
+      "name": "Goliath Cleaver Ram-Truck",
+      "ai_role": "heavy_interceptor_rammer",
+      "mass_kg": 9400.0,
+      "max_speed_mps": 31.5,
+      "hp": 680,
+      "armor": 22.0,
+      "threat_weight": 2.6,
+      "preferred_range_m": 4.0,
+      "weapon_dps": 14.0,
+      "ram_impulse_bonus": 1.55,
+      "ramming_resistance": 0.75,
+      "bounty_credits": 90,
+      "loot_table": {
+        "scrap_alloy": {
+          "chance": 0.95,
+          "min_qty": 5,
+          "max_qty": 11
+        },
+        "reactor_cells": {
+          "chance": 0.35,
+          "min_qty": 1,
+          "max_qty": 2
+        },
+        "cooling_rods": {
+          "chance": 0.28,
+          "min_qty": 1,
+          "max_qty": 2
+        }
+      }
+    },
+    {
+      "id": "dune_mortar_buggy",
+      "name": "Scorcher Half-Track Mortar Buggy",
+      "ai_role": "ranged_artillery_anchor",
+      "mass_kg": 3600.0,
+      "max_speed_mps": 30.0,
+      "hp": 340,
+      "armor": 10.0,
+      "threat_weight": 1.8,
+      "preferred_range_m": 85.0,
+      "weapon_dps": 38.0,
+      "splash_radius_m": 6.0,
+      "ramming_resistance": 0.4,
+      "bounty_credits": 60,
+      "loot_table": {
+        "scrap_alloy": {
+          "chance": 0.8,
+          "min_qty": 3,
+          "max_qty": 7
+        },
+        "reactor_cells": {
+          "chance": 0.4,
+          "min_qty": 1,
+          "max_qty": 2
+        },
+        "cooling_rods": {
+          "chance": 0.22,
+          "min_qty": 1,
+          "max_qty": 1
+        }
+      }
+    }
+  ],
+  "spline_track": {
+    "spline_type": "CatmullRomCentripetal",
+    "alpha_centripetal": 0.5,
+    "segment_length_m": 120.0,
+    "samples_per_segment": 64,
+    "control_point_variance_m": 45.0,
+    "max_curvature_deg_per_100m": 28.0,
+    "max_grade_slope_deg": 9.5,
+    "track_width_m": 6.5,
+    "rail_gauge_m": 3.2,
+    "sector_total_segments": 24,
+    "fork_frequency_segments": 6,
+    "switch_lookahead_distance_m": 180.0,
+    "branches": {
+      "high_threat_scrap_canyon": {
+        "id": "high_threat_scrap_canyon",
+        "name": "Scrap Canyon Trench (High Threat / High Yield)",
+        "threat_multiplier": 1.65,
+        "hazard_density": 0.72,
+        "grade_variance_deg": 8.5,
+        "curvature_multiplier": 1.4,
+        "salvage_reward_multiplier": 1.48,
+        "cooling_rod_drop_bonus": 0.2,
+        "ambient_heat_modifier_per_sec": 1.15
+      },
+      "low_yield_salt_flats": {
+        "id": "low_yield_salt_flats",
+        "name": "Alkali Salt Flats (Low Threat / High Speed)",
+        "threat_multiplier": 0.75,
+        "hazard_density": 0.2,
+        "grade_variance_deg": 2.0,
+        "curvature_multiplier": 0.65,
+        "salvage_reward_multiplier": 0.85,
+        "cooling_rod_drop_bonus": 0.0,
+        "ambient_heat_modifier_per_sec": 0.85
+      }
+    }
+  },
+  "economy": {
+    "actor_tick_interval_sec": 60,
+    "starting_player_credits": 1000,
+    "market_transaction_fee_pct": 0.05,
+    "hull_repair_cost_credits_per_hp": 1.55,
+    "ammo_fabrication_scrap_to_credits_equiv": 12.0,
+    "oasis_infrastructure_tax_pct": 0.04,
+    "price_formula": "P(t+1) = clamp(P_base * (1 + alpha_elasticity * ((D_t - S_t) / S_eq)) + gamma_reversion * (P_base - P(t)) + epsilon_noise, P_min, P_max)",
+    "commodities": [
+      {
+        "id": "purified_water",
+        "name": "Purified Water",
+        "unit_mass_kg": 50.0,
+        "base_price": 40.0,
+        "min_price": 18.0,
+        "max_price": 95.0,
+        "elasticity_alpha": 0.42,
+        "mean_reversion_gamma": 0.18,
+        "volatility_sigma": 0.04,
+        "is_primary_sink_consumable": false
+      },
+      {
+        "id": "scrap_alloy",
+        "name": "Scrap Alloy",
+        "unit_mass_kg": 80.0,
+        "base_price": 55.0,
+        "min_price": 25.0,
+        "max_price": 125.0,
+        "elasticity_alpha": 0.38,
+        "mean_reversion_gamma": 0.2,
+        "volatility_sigma": 0.05,
+        "is_primary_sink_consumable": false
+      },
+      {
+        "id": "crude_promethium",
+        "name": "Crude Promethium",
+        "unit_mass_kg": 110.0,
+        "base_price": 120.0,
+        "min_price": 55.0,
+        "max_price": 275.0,
+        "elasticity_alpha": 0.5,
+        "mean_reversion_gamma": 0.16,
+        "volatility_sigma": 0.06,
+        "is_primary_sink_consumable": false
+      },
+      {
+        "id": "reactor_cells",
+        "name": "Reactor Cells",
+        "unit_mass_kg": 65.0,
+        "base_price": 185.0,
+        "min_price": 90.0,
+        "max_price": 410.0,
+        "elasticity_alpha": 0.55,
+        "mean_reversion_gamma": 0.15,
+        "volatility_sigma": 0.07,
+        "is_primary_sink_consumable": false
+      },
+      {
+        "id": "cooling_rods",
+        "name": "Reactor Cooling Rods",
+        "unit_mass_kg": 45.0,
+        "base_price": 95.0,
+        "min_price": 50.0,
+        "max_price": 240.0,
+        "elasticity_alpha": 0.6,
+        "mean_reversion_gamma": 0.14,
+        "volatility_sigma": 0.06,
+        "is_primary_sink_consumable": true
+      }
+    ],
+    "oasis_hubs": [
+      {
+        "id": "hydro_haven",
+        "name": "Hydro-Haven Aquifer Bastion",
+        "biome": "Subterranean Basin",
+        "production_multipliers": {
+          "purified_water": 1.85,
+          "scrap_alloy": 0.9,
+          "crude_promethium": 0.65,
+          "reactor_cells": 0.8,
+          "cooling_rods": 1.2
+        },
+        "demand_multipliers": {
+          "purified_water": 0.6,
+          "scrap_alloy": 1.35,
+          "crude_promethium": 1.45,
+          "reactor_cells": 1.25,
+          "cooling_rods": 0.95
+        },
+        "equilibrium_stock": {
+          "purified_water": 600,
+          "scrap_alloy": 280,
+          "crude_promethium": 160,
+          "reactor_cells": 110,
+          "cooling_rods": 220
+        }
+      },
+      {
+        "id": "iron_refinery",
+        "name": "Iron-Refinery Slag Foundry",
+        "biome": "Volcanic Rust Canyon",
+        "production_multipliers": {
+          "purified_water": 0.55,
+          "scrap_alloy": 1.9,
+          "crude_promethium": 1.6,
+          "reactor_cells": 0.85,
+          "cooling_rods": 0.7
+        },
+        "demand_multipliers": {
+          "purified_water": 1.65,
+          "scrap_alloy": 0.6,
+          "crude_promethium": 0.75,
+          "reactor_cells": 1.4,
+          "cooling_rods": 1.55
+        },
+        "equilibrium_stock": {
+          "purified_water": 180,
+          "scrap_alloy": 650,
+          "crude_promethium": 420,
+          "reactor_cells": 120,
+          "cooling_rods": 140
+        }
+      },
+      {
+        "id": "aether_spire",
+        "name": "Aether-Spire Core Relay",
+        "biome": "Glass Fulgarite Plateau",
+        "production_multipliers": {
+          "purified_water": 0.7,
+          "scrap_alloy": 0.75,
+          "crude_promethium": 0.8,
+          "reactor_cells": 1.8,
+          "cooling_rods": 1.65
+        },
+        "demand_multipliers": {
+          "purified_water": 1.4,
+          "scrap_alloy": 1.5,
+          "crude_promethium": 1.55,
+          "reactor_cells": 0.65,
+          "cooling_rods": 0.75
+        },
+        "equilibrium_stock": {
+          "purified_water": 210,
+          "scrap_alloy": 240,
+          "crude_promethium": 190,
+          "reactor_cells": 450,
+          "cooling_rods": 380
+        }
+      }
+    ],
+    "cooling_rod_sink_model": {
+      "mandatory_baseline_rods_per_sector": 2.15,
+      "overclock_rods_per_high_threat_sector": 3.15,
+      "cargo_mass_thermal_penalty_rods_per_10t": 1.28,
+      "hub_emergency_coolant_flush_fee_credits": 168.0,
+      "target_sink_to_faucet_ratio_min": 0.78,
+      "target_sink_to_faucet_ratio_max": 0.94
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# Gradle / Java
+.gradle/
+**/build/
+!src/**/build/
+*.class
+*.log
+*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# Go
+backend/bin/
+*.exe
+*.test
+*.out
+
+# Blender backups
+*.blend1
+*.blend2
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

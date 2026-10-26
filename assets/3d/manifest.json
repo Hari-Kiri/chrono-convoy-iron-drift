@@ -1,0 +1,2677 @@
+{
+  "project": "Chrono-Convoy: Iron Drift",
+  "ticket": "3D-01",
+  "generator": "tools/blender/generate_convoy_assets.py",
+  "blender_version": "4.3.2",
+  "units": "meters",
+  "max_triangles": 3500,
+  "coordinate_system": {
+    "forward": "+Z",
+    "up": "+Y",
+    "right": "+X"
+  },
+  "geometry_nodes": "GN_ArmorRivets (GeometryNodeTree, applied before export)",
+  "materials": [
+    "Armor_RustSteel",
+    "Chassis_DarkIron",
+    "Desert_TanPaint",
+    "Brass_Trim",
+    "Rubber_Tire",
+    "Hazard_Copper",
+    "Ember_Glow"
+  ],
+  "vehicles": [
+    {
+      "id": "locomotive",
+      "name": "Armored Steam-Diesel Locomotive",
+      "glb": "locomotive.glb",
+      "obj": "locomotive.obj",
+      "mtl": "locomotive.mtl",
+      "triangles": 1572,
+      "triangle_count": 1572,
+      "faces": 1572,
+      "face_count": 1572,
+      "vertices": 940,
+      "vertex_count": 940,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.255,
+          0.0,
+          -4.0
+        ],
+        "max": [
+          1.255,
+          3.8,
+          4.7
+        ],
+        "size": [
+          2.51,
+          3.8,
+          8.7
+        ],
+        "dimensions": [
+          2.51,
+          3.8,
+          8.7
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.255,
+          0.0,
+          -4.0
+        ],
+        "max": [
+          1.255,
+          3.8,
+          4.7
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_ml",
+        "wheel_mr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": null,
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 1140,
+        "materials": [
+          "Chassis_DarkIron",
+          "Armor_RustSteel",
+          "Brass_Trim",
+          "Desert_TanPaint",
+          "Ember_Glow",
+          "Hazard_Copper"
+        ],
+        "children": [
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_ml",
+          "wheel_mr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 1140,
+          "materials": [
+            "Chassis_DarkIron",
+            "Armor_RustSteel",
+            "Brass_Trim",
+            "Desert_TanPaint",
+            "Ember_Glow",
+            "Hazard_Copper"
+          ],
+          "children": [
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_ml",
+            "wheel_mr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            2.6
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            2.6
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_ml",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            -0.0
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            -0.0
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_mr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            -0.0
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            -0.0
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            -2.6
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            -2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            -2.6
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            -2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "carriage_artillery",
+      "name": "Artillery Turret Carriage",
+      "glb": "carriage_artillery.glb",
+      "obj": "carriage_artillery.obj",
+      "mtl": "carriage_artillery.mtl",
+      "triangles": 1044,
+      "triangle_count": 1044,
+      "faces": 1044,
+      "face_count": 1044,
+      "vertices": 644,
+      "vertex_count": 644,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.235,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.235,
+          2.2,
+          3.75
+        ],
+        "size": [
+          2.47,
+          2.2,
+          7.5
+        ],
+        "dimensions": [
+          2.47,
+          2.2,
+          7.5
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.235,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.235,
+          2.2,
+          3.75
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 552,
+        "materials": [
+          "Chassis_DarkIron",
+          "Brass_Trim",
+          "Armor_RustSteel",
+          "Desert_TanPaint"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 552,
+          "materials": [
+            "Chassis_DarkIron",
+            "Brass_Trim",
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.75,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            1.75,
+            -0.0
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.45,
+            -0.0
+          ],
+          "triangles": 156,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "carriage_cargo",
+      "name": "Armored Cargo Carriage",
+      "glb": "carriage_cargo.glb",
+      "obj": "carriage_cargo.obj",
+      "mtl": "carriage_cargo.mtl",
+      "triangles": 936,
+      "triangle_count": 936,
+      "faces": 936,
+      "face_count": 936,
+      "vertices": 592,
+      "vertex_count": 592,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.295,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.295,
+          3.05,
+          3.75
+        ],
+        "size": [
+          2.59,
+          3.05,
+          7.5
+        ],
+        "dimensions": [
+          2.59,
+          3.05,
+          7.5
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.295,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.295,
+          3.05,
+          3.75
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": null,
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 648,
+        "materials": [
+          "Chassis_DarkIron",
+          "Brass_Trim",
+          "Desert_TanPaint",
+          "Armor_RustSteel",
+          "Hazard_Copper"
+        ],
+        "children": [
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 648,
+          "materials": [
+            "Chassis_DarkIron",
+            "Brass_Trim",
+            "Desert_TanPaint",
+            "Armor_RustSteel",
+            "Hazard_Copper"
+          ],
+          "children": [
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "raider_buggy",
+      "name": "Fast Buggy Raider",
+      "glb": "raider_buggy.glb",
+      "obj": "raider_buggy.obj",
+      "mtl": "raider_buggy.mtl",
+      "triangles": 784,
+      "triangle_count": 784,
+      "faces": 784,
+      "face_count": 784,
+      "vertices": 480,
+      "vertex_count": 480,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.175,
+          0.0,
+          -1.88
+        ],
+        "max": [
+          1.175,
+          2.275,
+          2.2
+        ],
+        "size": [
+          2.35,
+          2.275,
+          4.08
+        ],
+        "dimensions": [
+          2.35,
+          2.275,
+          4.08
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.175,
+          0.0,
+          -1.88
+        ],
+        "max": [
+          1.175,
+          2.275,
+          2.2
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 408,
+        "materials": [
+          "Chassis_DarkIron",
+          "Hazard_Copper",
+          "Desert_TanPaint",
+          "Armor_RustSteel",
+          "Ember_Glow",
+          "Brass_Trim"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 408,
+          "materials": [
+            "Chassis_DarkIron",
+            "Hazard_Copper",
+            "Desert_TanPaint",
+            "Armor_RustSteel",
+            "Ember_Glow",
+            "Brass_Trim"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.9,
+            -0.4
+          ],
+          "local_translation": [
+            0.0,
+            1.9,
+            -0.4
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.6,
+            0.4
+          ],
+          "triangles": 40,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.45,
+            1.2
+          ],
+          "local_translation": [
+            -0.95,
+            0.45,
+            1.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.45,
+            1.2
+          ],
+          "local_translation": [
+            0.95,
+            0.45,
+            1.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.45,
+            -1.3
+          ],
+          "local_translation": [
+            -0.95,
+            0.45,
+            -1.3
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.45,
+            -1.3
+          ],
+          "local_translation": [
+            0.95,
+            0.45,
+            -1.3
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "raider_harpoon_rig",
+      "name": "Heavy Harpoon Rig Raider",
+      "glb": "raider_harpoon_rig.glb",
+      "obj": "raider_harpoon_rig.obj",
+      "mtl": "raider_harpoon_rig.mtl",
+      "triangles": 1210,
+      "triangle_count": 1210,
+      "faces": 1210,
+      "face_count": 1210,
+      "vertices": 739,
+      "vertex_count": 739,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.475,
+          0.0,
+          -2.5
+        ],
+        "max": [
+          1.475,
+          3.1,
+          3.2
+        ],
+        "size": [
+          2.95,
+          3.1,
+          5.7
+        ],
+        "dimensions": [
+          2.95,
+          3.1,
+          5.7
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.475,
+          0.0,
+          -2.5
+        ],
+        "max": [
+          1.475,
+          3.1,
+          3.2
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_ml",
+        "wheel_mr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 656,
+        "materials": [
+          "Chassis_DarkIron",
+          "Desert_TanPaint",
+          "Ember_Glow",
+          "Armor_RustSteel",
+          "Brass_Trim"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_ml",
+          "wheel_mr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 656,
+          "materials": [
+            "Chassis_DarkIron",
+            "Desert_TanPaint",
+            "Ember_Glow",
+            "Armor_RustSteel",
+            "Brass_Trim"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_ml",
+            "wheel_mr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.6,
+            -0.6
+          ],
+          "local_translation": [
+            0.0,
+            1.6,
+            -0.6
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.3,
+            0.6
+          ],
+          "triangles": 74,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron",
+            "Hazard_Copper",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            1.7
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            1.7
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            1.7
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            1.7
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_ml",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            -0.2
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            -0.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_mr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            -0.2
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            -0.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            -1.8
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            -1.8
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            -1.8
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            -1.8
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "locomotive",
+      "name": "Armored Steam-Diesel Locomotive",
+      "glb": "locomotive.glb",
+      "obj": "locomotive.obj",
+      "mtl": "locomotive.mtl",
+      "triangles": 1572,
+      "triangle_count": 1572,
+      "faces": 1572,
+      "face_count": 1572,
+      "vertices": 940,
+      "vertex_count": 940,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.255,
+          0.0,
+          -4.0
+        ],
+        "max": [
+          1.255,
+          3.8,
+          4.7
+        ],
+        "size": [
+          2.51,
+          3.8,
+          8.7
+        ],
+        "dimensions": [
+          2.51,
+          3.8,
+          8.7
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.255,
+          0.0,
+          -4.0
+        ],
+        "max": [
+          1.255,
+          3.8,
+          4.7
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_ml",
+        "wheel_mr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": null,
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 1140,
+        "materials": [
+          "Chassis_DarkIron",
+          "Armor_RustSteel",
+          "Brass_Trim",
+          "Desert_TanPaint",
+          "Ember_Glow",
+          "Hazard_Copper"
+        ],
+        "children": [
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_ml",
+          "wheel_mr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 1140,
+          "materials": [
+            "Chassis_DarkIron",
+            "Armor_RustSteel",
+            "Brass_Trim",
+            "Desert_TanPaint",
+            "Ember_Glow",
+            "Hazard_Copper"
+          ],
+          "children": [
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_ml",
+            "wheel_mr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            2.6
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            2.6
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_ml",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            -0.0
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            -0.0
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_mr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            -0.0
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            -0.0
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.55,
+            -2.6
+          ],
+          "local_translation": [
+            -0.95,
+            0.55,
+            -2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.55,
+            -2.6
+          ],
+          "local_translation": [
+            0.95,
+            0.55,
+            -2.6
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "carriage_artillery",
+      "name": "Artillery Turret Carriage",
+      "glb": "carriage_artillery.glb",
+      "obj": "carriage_artillery.obj",
+      "mtl": "carriage_artillery.mtl",
+      "triangles": 1044,
+      "triangle_count": 1044,
+      "faces": 1044,
+      "face_count": 1044,
+      "vertices": 644,
+      "vertex_count": 644,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.235,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.235,
+          2.2,
+          3.75
+        ],
+        "size": [
+          2.47,
+          2.2,
+          7.5
+        ],
+        "dimensions": [
+          2.47,
+          2.2,
+          7.5
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.235,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.235,
+          2.2,
+          3.75
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 552,
+        "materials": [
+          "Chassis_DarkIron",
+          "Brass_Trim",
+          "Armor_RustSteel",
+          "Desert_TanPaint"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 552,
+          "materials": [
+            "Chassis_DarkIron",
+            "Brass_Trim",
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.75,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            1.75,
+            -0.0
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.45,
+            -0.0
+          ],
+          "triangles": 156,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "carriage_cargo",
+      "name": "Armored Cargo Carriage",
+      "glb": "carriage_cargo.glb",
+      "obj": "carriage_cargo.obj",
+      "mtl": "carriage_cargo.mtl",
+      "triangles": 936,
+      "triangle_count": 936,
+      "faces": 936,
+      "face_count": 936,
+      "vertices": 592,
+      "vertex_count": 592,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.295,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.295,
+          3.05,
+          3.75
+        ],
+        "size": [
+          2.59,
+          3.05,
+          7.5
+        ],
+        "dimensions": [
+          2.59,
+          3.05,
+          7.5
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.295,
+          0.0,
+          -3.75
+        ],
+        "max": [
+          1.295,
+          3.05,
+          3.75
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": null,
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 648,
+        "materials": [
+          "Chassis_DarkIron",
+          "Brass_Trim",
+          "Desert_TanPaint",
+          "Armor_RustSteel",
+          "Hazard_Copper"
+        ],
+        "children": [
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 648,
+          "materials": [
+            "Chassis_DarkIron",
+            "Brass_Trim",
+            "Desert_TanPaint",
+            "Armor_RustSteel",
+            "Hazard_Copper"
+          ],
+          "children": [
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            -0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "local_translation": [
+            0.95,
+            0.5,
+            -2.4
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "raider_buggy",
+      "name": "Fast Buggy Raider",
+      "glb": "raider_buggy.glb",
+      "obj": "raider_buggy.obj",
+      "mtl": "raider_buggy.mtl",
+      "triangles": 784,
+      "triangle_count": 784,
+      "faces": 784,
+      "face_count": 784,
+      "vertices": 480,
+      "vertex_count": 480,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.175,
+          0.0,
+          -1.88
+        ],
+        "max": [
+          1.175,
+          2.275,
+          2.2
+        ],
+        "size": [
+          2.35,
+          2.275,
+          4.08
+        ],
+        "dimensions": [
+          2.35,
+          2.275,
+          4.08
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.175,
+          0.0,
+          -1.88
+        ],
+        "max": [
+          1.175,
+          2.275,
+          2.2
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 408,
+        "materials": [
+          "Chassis_DarkIron",
+          "Hazard_Copper",
+          "Desert_TanPaint",
+          "Armor_RustSteel",
+          "Ember_Glow",
+          "Brass_Trim"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 408,
+          "materials": [
+            "Chassis_DarkIron",
+            "Hazard_Copper",
+            "Desert_TanPaint",
+            "Armor_RustSteel",
+            "Ember_Glow",
+            "Brass_Trim"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.9,
+            -0.4
+          ],
+          "local_translation": [
+            0.0,
+            1.9,
+            -0.4
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.6,
+            0.4
+          ],
+          "triangles": 40,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.45,
+            1.2
+          ],
+          "local_translation": [
+            -0.95,
+            0.45,
+            1.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.45,
+            1.2
+          ],
+          "local_translation": [
+            0.95,
+            0.45,
+            1.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -0.95,
+            0.45,
+            -1.3
+          ],
+          "local_translation": [
+            -0.95,
+            0.45,
+            -1.3
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            0.95,
+            0.45,
+            -1.3
+          ],
+          "local_translation": [
+            0.95,
+            0.45,
+            -1.3
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Brass_Trim"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    },
+    {
+      "id": "raider_harpoon_rig",
+      "name": "Heavy Harpoon Rig Raider",
+      "glb": "raider_harpoon_rig.glb",
+      "obj": "raider_harpoon_rig.obj",
+      "mtl": "raider_harpoon_rig.mtl",
+      "triangles": 1210,
+      "triangle_count": 1210,
+      "faces": 1210,
+      "face_count": 1210,
+      "vertices": 739,
+      "vertex_count": 739,
+      "max_triangles": 3500,
+      "within_budget": true,
+      "coordinate_system": {
+        "forward": "+Z",
+        "up": "+Y",
+        "right": "+X"
+      },
+      "bounds": {
+        "min": [
+          -1.475,
+          0.0,
+          -2.5
+        ],
+        "max": [
+          1.475,
+          3.1,
+          3.2
+        ],
+        "size": [
+          2.95,
+          3.1,
+          5.7
+        ],
+        "dimensions": [
+          2.95,
+          3.1,
+          5.7
+        ]
+      },
+      "obj_bounds_verified": {
+        "min": [
+          -1.475,
+          0.0,
+          -2.5
+        ],
+        "max": [
+          1.475,
+          3.1,
+          3.2
+        ]
+      },
+      "pivot": {
+        "root": "chassis",
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "note": "ground plane Y=0, centered X=0, front faces +Z"
+      },
+      "root_node": "chassis",
+      "wheels": [
+        "wheel_fl",
+        "wheel_fr",
+        "wheel_ml",
+        "wheel_mr",
+        "wheel_rl",
+        "wheel_rr"
+      ],
+      "turret": {
+        "base": "turret_base",
+        "gun": "turret_gun"
+      },
+      "hierarchy": {
+        "name": "chassis",
+        "parent": null,
+        "pivot": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "local_translation": [
+          0.0,
+          0.0,
+          -0.0
+        ],
+        "triangles": 656,
+        "materials": [
+          "Chassis_DarkIron",
+          "Desert_TanPaint",
+          "Ember_Glow",
+          "Armor_RustSteel",
+          "Brass_Trim"
+        ],
+        "children": [
+          "turret_base",
+          "wheel_fl",
+          "wheel_fr",
+          "wheel_ml",
+          "wheel_mr",
+          "wheel_rl",
+          "wheel_rr"
+        ]
+      },
+      "nodes": [
+        {
+          "name": "chassis",
+          "parent": null,
+          "pivot": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            0.0,
+            -0.0
+          ],
+          "triangles": 656,
+          "materials": [
+            "Chassis_DarkIron",
+            "Desert_TanPaint",
+            "Ember_Glow",
+            "Armor_RustSteel",
+            "Brass_Trim"
+          ],
+          "children": [
+            "turret_base",
+            "wheel_fl",
+            "wheel_fr",
+            "wheel_ml",
+            "wheel_mr",
+            "wheel_rl",
+            "wheel_rr"
+          ]
+        },
+        {
+          "name": "turret_base",
+          "parent": "chassis",
+          "pivot": [
+            0.0,
+            1.6,
+            -0.6
+          ],
+          "local_translation": [
+            0.0,
+            1.6,
+            -0.6
+          ],
+          "triangles": 48,
+          "materials": [
+            "Armor_RustSteel",
+            "Desert_TanPaint"
+          ],
+          "children": [
+            "turret_gun"
+          ]
+        },
+        {
+          "name": "turret_gun",
+          "parent": "turret_base",
+          "pivot": [
+            0.0,
+            0.3,
+            -0.0
+          ],
+          "local_translation": [
+            0.0,
+            -1.3,
+            0.6
+          ],
+          "triangles": 74,
+          "materials": [
+            "Armor_RustSteel",
+            "Chassis_DarkIron",
+            "Hazard_Copper",
+            "Brass_Trim"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fl",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            1.7
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            1.7
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_fr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            1.7
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            1.7
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_ml",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            -0.2
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            -0.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_mr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            -0.2
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            -0.2
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rl",
+          "parent": "chassis",
+          "pivot": [
+            -1.2,
+            0.6,
+            -1.8
+          ],
+          "local_translation": [
+            -1.2,
+            0.6,
+            -1.8
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        },
+        {
+          "name": "wheel_rr",
+          "parent": "chassis",
+          "pivot": [
+            1.2,
+            0.6,
+            -1.8
+          ],
+          "local_translation": [
+            1.2,
+            0.6,
+            -1.8
+          ],
+          "triangles": 72,
+          "materials": [
+            "Rubber_Tire",
+            "Hazard_Copper"
+          ],
+          "children": []
+        }
+      ],
+      "materials": [
+        "Armor_RustSteel",
+        "Brass_Trim",
+        "Chassis_DarkIron",
+        "Desert_TanPaint",
+        "Ember_Glow",
+        "Hazard_Copper",
+        "Rubber_Tire"
+      ]
+    }
+  ]
+}
