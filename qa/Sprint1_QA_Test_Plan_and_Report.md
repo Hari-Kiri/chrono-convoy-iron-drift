@@ -143,3 +143,36 @@ go test -v -race ./...
 # Optional: To point the stress suite at a live running Fiber backend server:
 CONVOY_BACKEND_URL="http://127.0.0.1:8080" go test -v -race ./...
 ```
+
+---
+
+## 6. Sprint 2 — `v1.0.0` End-to-End Release Verification & Live Integration Sign-Off
+
+### 6.1 Release Readiness & Client Asset Verification (`ReleaseReadinessIntegrationTest.java`)
+Executed via `./gradlew test` in `/workspace/chrono-convoy-iron-drift/qa/` (`31 / 31` JUnit 5 tests passing `100%`):
+
+| Test ID | Verification Target | Inspected Artifact(s) in `client/assets/` | Result |
+| :--- | :--- | :--- | :---: |
+| `QA-02-1` | Parametric GDD & Physics/Reactor/Economy Config | `config/convoy_config.json` (`60Hz`, `100W/130W`, 4 carriages + loco, 3 Oasis hubs, 5 commodities) | **PASS** |
+| `QA-02-2` | 3D Vehicle/Carriage Meshes & Geometry Budgets | `3d/manifest.json` + 5 `.obj`/`.mtl`/`.glb` (`locomotive`, `carriage_artillery`, `carriage_cargo`, `raider_buggy`, `raider_harpoon_rig`; all `<= 3,500` tris, UVs in `[0,1]`) | **PASS** |
+| `QA-02-3` | 2D Tactical HUD TextureAtlas, Nine-Patches & Skin | `ui/convoy_hud.atlas`, `ui/convoy_hud.png` (`1024x1024` `RGBA8888`), `ui/convoy_hud_skin.json`, 3 `.fnt` bitmap fonts | **PASS** |
+| `QA-02-4` | Adaptive 4-Stem Audio & 5 Combat SFX WAV Headers | `audio/adaptive_audio_cues.json`, 4 stems (`352,800` samples @ `44.1kHz` 16-bit PCM), 5 SFX WAVs | **PASS** |
+| `QA-02-5` | 60Hz Deterministic Combat Run & Signed Replay Payload | `ConvoyPhysicsHarness` (600 ticks, 5 cars, 2 raiders) + `ReactorPowerController` + `HMAC-SHA256` canonical `v1\|...` envelope | **PASS** |
+
+### 6.2 Live Backend (`127.0.0.1:8080`) + PostgreSQL 17.11 (`chrono_convoy`) E2E Suite (`e2e_live_release_test.go`)
+Executed via `go test -v -race ./...` in `/workspace/chrono-convoy-iron-drift/qa/` (`13 / 13` Go tests passing `100%` with zero race conditions):
+
+| Test ID | Live E2E Verification Flow | HTTP Endpoint(s) & PostgreSQL `chrono_convoy` Tables Verified | Result |
+| :--- | :--- | :--- | :---: |
+| `QA-02-E2E-1` | `TestLiveRelease_1_HealthAndLoadoutABAC` | `GET /healthz` (OWASP headers), `GET /api/v1/convoy/loadout/:id` (`403` Anti-IDOR check), `POST /api/v1/convoy/loadout` -> `convoy_loadouts` & `player_wallets` | **PASS** |
+| `QA-02-E2E-2` | `TestLiveRelease_2_60HzCombatSimulationAndSignedReplayPersistence` | 60Hz combat run -> `POST /api/v1/convoy/run/verify` (`HMAC-SHA256` + `AES-256-GCM` AEAD + duplicate idempotency) -> `verified_convoy_runs`, `commodity_ledger_entries`, `player_wallets` | **PASS** |
+| `QA-02-E2E-3` | `TestLiveRelease_3_OasisHubACIDCommodityTradeAndConservation` | `GET /api/v1/oasis/market`, `POST /api/v1/oasis/market/trade` (`BUY` 20 `purified_water` @ `hydro_haven`, duplicate replay guard, `DELIVER` 12 @ `iron_refinery`) -> `convoy_cargo_inventory` (`8` remaining) & exact wallet delta conservation | **PASS** |
+| `QA-02-E2E-4` | `TestLiveRelease_4_BlueprintsAndNoSQLInjectionDefense` | `GET /api/v1/blueprints/carriages` (`200 OK`) & `?slot_category=$ne` (`400 Bad Request` OWASP NoSQL injection guard) | **PASS** |
+
+### 6.3 Final `v1.0.0` Release Sign-Off Checklist
+
+- [x] **Deterministic 60Hz Physics & Coupler Stability:** `31 / 31` JUnit 5 tests passing (`0` NaN/Infinity, `0` barrier tunneling up to `450 m/s`, bit-identical state hashes across twin runs).
+- [x] **Reactor Power Conservation (`100W` Base / `130W` Overclock):** Strict watt conservation and atomic rollback verified across client, QA harness, and Go replay verifier.
+- [x] **Oasis Hub Economy & Anti-Arbitrage Conservation:** `500 bps` bid/ask spread, `450 bps` / `400 bps` infrastructure tax, cooling rod sink decay, and PostgreSQL ACID ledger conservation verified.
+- [x] **Studio Asset Completeness in `client/assets/`:** `config/convoy_config.json`, `3d/*.obj` + `.mtl` + `.glb` + `manifest.json`, `ui/convoy_hud.atlas` + `convoy_hud.png` + `convoy_hud_skin.json`, and `audio/adaptive_audio_cues.json` + 4 WAV stems + 5 WAV SFX verified.
+- [x] **Live Backend & PostgreSQL 17.11 (`chrono_convoy`) Integration:** `13 / 13` Go QA tests (`go test -v -race ./...`) passing with zero data races against `http://127.0.0.1:8080` and PostgreSQL `chrono_convoy`.

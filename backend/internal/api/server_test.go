@@ -28,7 +28,7 @@ func setupTestServer(t *testing.T) (*Server, *replay.KeyRing) {
 	kr := replay.NewKeyRing("chrono-key-2026-v1", "chrono-convoy-iron-drift-sprint1-master-secret-2026")
 	verifier := replay.NewVerifier(kr)
 
-	repo, err := ledger.NewPostgresLedgerRepository("host=/var/run/postgresql user=box dbname=chrono_convoy sslmode=disable")
+	repo, err := ledger.NewPostgresLedgerRepository("postgres://box@localhost:5432/chrono_convoy?sslmode=disable")
 	if err != nil {
 		t.Fatalf("failed to connect to PostgreSQL chrono_convoy: %v", err)
 	}
@@ -180,5 +180,35 @@ func TestServer_EndToEndEndpointsAndSecurity(t *testing.T) {
 	resp, body = doJSONRequest(t, srv, http.MethodGet, "/api/v1/blueprints/carriages", "", nil)
 	if resp.StatusCode != http.StatusOK || !bytes.Contains(body, []byte("gatling_turret_car")) {
 		t.Fatalf("GET /api/v1/blueprints/carriages failed: status=%d body=%s", resp.StatusCode, string(body))
+	}
+
+	// 8. GET /api/v1/release/status (unauthenticated and with player header)
+	resp, body = doJSONRequest(t, srv, http.MethodGet, "/api/v1/release/status", "", nil)
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("GET /api/v1/release/status expected 200, got %d: %s", resp.StatusCode, string(body))
+	}
+	var releasePayload map[string]any
+	if err := json.Unmarshal(body, &releasePayload); err != nil {
+		t.Fatalf("failed to unmarshal /api/v1/release/status JSON: %v", err)
+	}
+	if releasePayload["version"] != "1.0.0" || releasePayload["service"] != "chrono-convoy-backend" || releasePayload["status"] != "ok" {
+		t.Fatalf("unexpected release status metadata: %+v", releasePayload)
+	}
+	dbMap, ok := releasePayload["database"].(map[string]any)
+	if !ok || dbMap["connected"] != true || dbMap["driver"] != "postgres" {
+		t.Fatalf("expected connected postgres database health in release status, got %+v", releasePayload["database"])
+	}
+	marketMap, ok := releasePayload["oasis_market"].(map[string]any)
+	if !ok || marketMap["hydro_haven"] == nil || marketMap["iron_refinery"] == nil || marketMap["aether_spire"] == nil {
+		t.Fatalf("expected all 3 Oasis Hubs in release status oasis_market, got %+v", releasePayload["oasis_market"])
+	}
+	if releasePayload["timestamp"] == nil || releasePayload["timestamp"] == "" {
+		t.Fatalf("expected non-empty UTC ISO8601 timestamp in release status")
+	}
+
+	// Verify GET /api/v1/release/status also succeeds with X-Player-ID header
+	respAuth, _ := doJSONRequest(t, srv, http.MethodGet, "/api/v1/release/status", "player_cmdr_riki", nil)
+	if respAuth.StatusCode != http.StatusOK {
+		t.Fatalf("GET /api/v1/release/status with X-Player-ID expected 200, got %d", respAuth.StatusCode)
 	}
 }

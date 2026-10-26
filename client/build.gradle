@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.chronoconvoy'
-version = '0.1.0-SNAPSHOT'
+version = '1.0.0'
 
 ext {
     gdxVersion = '1.12.1'
@@ -21,9 +21,18 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['assets']
+        }
+    }
+}
+
 dependencies {
     api "com.badlogicgames.gdx:gdx:${gdxVersion}"
     api "com.badlogicgames.gdx:gdx-box2d:${gdxVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:${gdxVersion}"
     implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
     runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
     runtimeOnly "com.badlogicgames.gdx:gdx-box2d-platform:${gdxVersion}:natives-desktop"
@@ -36,7 +45,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'com.chronoconvoy.client.HeadlessConvoyRunner'
+    mainClass = 'com.chronoconvoy.client.DesktopLauncher'
 }
 
 tasks.named('test', Test) {
@@ -46,4 +55,36 @@ tasks.named('test', Test) {
         events "passed", "skipped", "failed"
         exceptionFormat "full"
     }
+}
+
+tasks.register('fatJar', Jar) {
+    group = 'build'
+    description = 'Packages the standalone desktop LWJGL3 + Headless playable release JAR with all assets and natives.'
+    archiveBaseName.set('chrono-convoy-desktop')
+    archiveVersion.set(project.version.toString())
+    archiveClassifier.set('')
+    archiveFileName.set("chrono-convoy-desktop-${project.version}.jar")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes(
+            'Main-Class': 'com.chronoconvoy.client.DesktopLauncher',
+            'Implementation-Title': 'Chrono-Convoy: Iron Drift Client',
+            'Implementation-Version': project.version.toString()
+        )
+    }
+
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    } {
+        exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+    }
+}
+
+tasks.register('dist') {
+    group = 'distribution'
+    description = 'Builds the standalone executable Fat JAR distribution.'
+    dependsOn tasks.named('fatJar')
 }

@@ -112,27 +112,79 @@ type PostgresLedgerRepository struct {
 	db *sql.DB
 }
 
+// DatabaseHealthStatus summarizes live PostgreSQL 17 ledger connectivity and table counts.
+type DatabaseHealthStatus struct {
+	Connected        bool   `json:"connected"`
+	Driver           string `json:"driver"`
+	Database         string `json:"database"`
+	PingStatus       string `json:"ping_status"`
+	PlayerWallets    int64  `json:"player_wallets_count"`
+	ConvoyLoadouts   int64  `json:"convoy_loadouts_count"`
+	LedgerEntries    int64  `json:"ledger_entries_count"`
+	VerifiedRuns     int64  `json:"verified_runs_count"`
+	Error            string `json:"error,omitempty"`
+}
+
 // NewPostgresLedgerRepository opens and tunes a PostgreSQL connection pool.
+// Supports postgres://box@localhost:5432/chrono_convoy?sslmode=disable and falls back
+// to Unix domain socket peer auth when local TCP scram-sha-256 has no password set.
 func NewPostgresLedgerRepository(dsn string) (*PostgresLedgerRepository, error) {
 	if strings.TrimSpace(dsn) == "" {
-		dsn = "host=/var/run/postgresql user=box dbname=chrono_convoy sslmode=disable"
+		dsn = "postgres://box@localhost:5432/chrono_convoy?sslmode=disable"
 	}
-	db, err := sql.Open("postgres", dsn)
-	if err != nil {
-		return nil, err
+	candidates := []string{dsn}
+	if strings.Contains(dsn, "localhost") || strings.Contains(dsn, "127.0.0.1") {
+		candidates = append(candidates, "host=/var/run/postgresql user=box dbname=chrono_convoy sslmode=disable")
 	}
-	db.SetMaxOpenConns(25)
-	db.SetMaxIdleConns(10)
-	db.SetConnMaxLifetime(30 * time.Minute)
-	db.SetConnMaxIdleTime(5 * time.Minute)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := db.PingContext(ctx); err != nil {
+	var lastErr error
+	for _, candidateDSN := range candidates {
+		db, err := sql.Open("postgres", candidateDSN)
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		db.SetMaxOpenConns(25)
+		db.SetMaxIdleConns(10)
+		db.SetConnMaxLifetime(30 * time.Minute)
+		db.SetConnMaxIdleTime(5 * time.Minute)
+
+		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+		pingErr := db.PingContext(ctx)
+		cancel()
+		if pingErr == nil {
+			return &PostgresLedgerRepository{db: db}, nil
+		}
 		_ = db.Close()
-		return nil, err
+		lastErr = pingErr
 	}
-	return &PostgresLedgerRepository{db: db}, nil
+	return nil, lastErr
+}
+
+// GetDatabaseHealth pings PostgreSQL and queries live ledger table counts.
+func (r *PostgresLedgerRepository) GetDatabaseHealth(ctx context.Context) DatabaseHealthStatus {
+	status := DatabaseHealthStatus{
+		Connected:  false,
+		Driver:     "postgres",
+		Database:   "chrono_convoy",
+		PingStatus: "down",
+	}
+	if r == nil || r.db == nil {
+		status.Error = "database repository not initialized"
+		return status
+	}
+	if err := r.db.PingContext(ctx); err != nil {
+		status.Error = err.Error()
+		return status
+	}
+	status.Connected = true
+	status.PingStatus = "ok"
+
+	_ = r.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM player_wallets`).Scan(&status.PlayerWallets)
+	_ = r.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM convoy_loadouts`).Scan(&status.ConvoyLoadouts)
+	_ = r.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM commodity_ledger_entries`).Scan(&status.LedgerEntries)
+	_ = r.db.QueryRowContext(ctx, `SELECT COUNT(*) FROM verified_convoy_runs`).Scan(&status.VerifiedRuns)
+	return status
 }
 
 func (r *PostgresLedgerRepository) Close() error {

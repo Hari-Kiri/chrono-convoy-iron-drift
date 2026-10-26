@@ -21,7 +21,7 @@ func main() {
 
 	pgDSN := os.Getenv("POSTGRES_DSN")
 	if pgDSN == "" {
-		pgDSN = "host=/var/run/postgresql user=box dbname=chrono_convoy sslmode=disable"
+		pgDSN = "postgres://box@localhost:5432/chrono_convoy?sslmode=disable"
 	}
 
 	ledgerRepo, err := ledger.NewPostgresLedgerRepository(pgDSN)
@@ -42,7 +42,7 @@ func main() {
 	addr := os.Getenv("PORT")
 	if addr == "" {
 		addr = ":8080"
-	} else if addr[0] != ':' {
+	} else if addr[0] != ':' && len(addr) <= 5 {
 		addr = ":" + addr
 	}
 
@@ -54,7 +54,7 @@ func main() {
 		_ = srv.App().Shutdown()
 	}()
 
-	log.Printf("Chrono-Convoy: Iron Drift Backend listening on %s", addr)
+	log.Printf("Chrono-Convoy: Iron Drift v1.0.0 Backend listening on %s", addr)
 	if err := srv.App().Listen(addr); err != nil {
 		log.Fatalf("server exited: %v", err)
 	}
