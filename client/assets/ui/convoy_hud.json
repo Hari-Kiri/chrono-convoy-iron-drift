@@ -1,0 +1,359 @@
+{
+  "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+    "default-font": {
+      "file": "default.fnt"
+    },
+    "mono-font": {
+      "file": "convoy_mono.fnt"
+    },
+    "title-font": {
+      "file": "convoy_title.fnt"
+    }
+  },
+  "com.badlogic.gdx.graphics.Color": {
+    "white": {
+      "r": 1.0,
+      "g": 1.0,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "brass_light": {
+      "r": 0.898,
+      "g": 0.722,
+      "b": 0.412,
+      "a": 1.0
+    },
+    "brass_main": {
+      "r": 0.769,
+      "g": 0.573,
+      "b": 0.271,
+      "a": 1.0
+    },
+    "brass_dark": {
+      "r": 0.518,
+      "g": 0.361,
+      "b": 0.141,
+      "a": 1.0
+    },
+    "copper_warm": {
+      "r": 0.831,
+      "g": 0.478,
+      "b": 0.263,
+      "a": 1.0
+    },
+    "iron_dark": {
+      "r": 0.094,
+      "g": 0.106,
+      "b": 0.125,
+      "a": 1.0
+    },
+    "iron_mid": {
+      "r": 0.165,
+      "g": 0.184,
+      "b": 0.216,
+      "a": 1.0
+    },
+    "crt_bg": {
+      "r": 0.031,
+      "g": 0.078,
+      "b": 0.055,
+      "a": 1.0
+    },
+    "crt_phosphor_green": {
+      "r": 0.18,
+      "g": 0.902,
+      "b": 0.478,
+      "a": 1.0
+    },
+    "crt_phosphor_dim": {
+      "r": 0.086,
+      "g": 0.451,
+      "b": 0.243,
+      "a": 1.0
+    },
+    "shields_cyan": {
+      "r": 0.22,
+      "g": 0.851,
+      "b": 0.961,
+      "a": 1.0
+    },
+    "artillery_amber": {
+      "r": 0.961,
+      "g": 0.651,
+      "b": 0.137,
+      "a": 1.0
+    },
+    "thrusters_emerald": {
+      "r": 0.18,
+      "g": 0.902,
+      "b": 0.478,
+      "a": 1.0
+    },
+    "critical_crimson": {
+      "r": 1.0,
+      "g": 0.231,
+      "b": 0.188,
+      "a": 1.0
+    },
+    "warning_orange": {
+      "r": 1.0,
+      "g": 0.463,
+      "b": 0.149,
+      "a": 1.0
+    },
+    "hazard_yellow": {
+      "r": 0.973,
+      "g": 0.82,
+      "b": 0.165,
+      "a": 1.0
+    },
+    "ivory_text": {
+      "r": 0.957,
+      "g": 0.925,
+      "b": 0.847,
+      "a": 1.0
+    },
+    "muted_steel": {
+      "r": 0.58,
+      "g": 0.62,
+      "b": 0.659,
+      "a": 1.0
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
+    "dialog_dim_overlay": {
+      "name": "white_pixel",
+      "color": {
+        "r": 0.04,
+        "g": 0.05,
+        "b": 0.07,
+        "a": 0.78
+      }
+    },
+    "crt_scanline_tint": {
+      "name": "white_pixel",
+      "color": {
+        "r": 0.18,
+        "g": 0.9,
+        "b": 0.48,
+        "a": 0.12
+      }
+    },
+    "divider_brass_rule": {
+      "name": "white_pixel",
+      "color": {
+        "r": 0.769,
+        "g": 0.573,
+        "b": 0.271,
+        "a": 0.85
+      }
+    },
+    "danger_flash_tint": {
+      "name": "white_pixel",
+      "color": {
+        "r": 1.0,
+        "g": 0.231,
+        "b": 0.188,
+        "a": 0.28
+      }
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+    "default": {
+      "font": "default-font",
+      "fontColor": "ivory_text"
+    },
+    "crt-readout": {
+      "font": "mono-font",
+      "fontColor": "crt_phosphor_green",
+      "background": "panel_crt_screen"
+    },
+    "crt-amber": {
+      "font": "mono-font",
+      "fontColor": "artillery_amber"
+    },
+    "crt-cyan": {
+      "font": "mono-font",
+      "fontColor": "shields_cyan"
+    },
+    "crt-critical": {
+      "font": "mono-font",
+      "fontColor": "critical_crimson"
+    },
+    "deck-header": {
+      "font": "title-font",
+      "fontColor": "brass_light"
+    },
+    "muted-telemetry": {
+      "font": "default-font",
+      "fontColor": "muted_steel"
+    },
+    "hazard-banner": {
+      "font": "title-font",
+      "fontColor": "hazard_yellow",
+      "background": "overlay_track_switcher_warning"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+    "default": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "disabled": "btn_brass_disabled",
+      "font": "default-font",
+      "fontColor": "ivory_text",
+      "downFontColor": "crt_phosphor_green",
+      "overFontColor": "brass_light",
+      "disabledFontColor": "muted_steel"
+    },
+    "toggle-switch": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "checked": "btn_brass_checked",
+      "disabled": "btn_brass_disabled",
+      "font": "mono-font",
+      "fontColor": "ivory_text",
+      "checkedFontColor": "crt_phosphor_green",
+      "overFontColor": "brass_light",
+      "disabledFontColor": "muted_steel"
+    },
+    "emergency-vent": {
+      "up": "btn_emergency_up",
+      "down": "btn_emergency_down",
+      "over": "btn_emergency_up",
+      "disabled": "btn_brass_disabled",
+      "font": "title-font",
+      "fontColor": "hazard_yellow",
+      "downFontColor": "white",
+      "disabledFontColor": "muted_steel"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
+    "default": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "disabled": "btn_brass_disabled"
+    },
+    "junction-left": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "checked": "btn_brass_checked",
+      "imageUp": "icon_junction_left"
+    },
+    "junction-straight": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "checked": "btn_brass_checked",
+      "imageUp": "icon_junction_straight"
+    },
+    "junction-right": {
+      "up": "btn_brass_up",
+      "down": "btn_brass_down",
+      "over": "btn_brass_over",
+      "checked": "btn_brass_checked",
+      "imageUp": "icon_junction_right"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+    "default-horizontal": {
+      "background": "slider_track_brass",
+      "knob": "slider_knob_brass",
+      "knobOver": "slider_knob_over",
+      "knobDown": "slider_knob_down",
+      "knobBefore": "slider_fill_thrusters_emerald"
+    },
+    "default-vertical": {
+      "background": "slider_track_vertical",
+      "knob": "slider_knob_brass",
+      "knobOver": "slider_knob_over",
+      "knobDown": "slider_knob_down",
+      "knobBefore": "slider_fill_thrusters_emerald"
+    },
+    "reactor-shields": {
+      "background": "slider_track_brass",
+      "knob": "slider_knob_brass",
+      "knobOver": "slider_knob_over",
+      "knobDown": "slider_knob_down",
+      "knobBefore": "slider_fill_shields_cyan"
+    },
+    "reactor-artillery": {
+      "background": "slider_track_brass",
+      "knob": "slider_knob_brass",
+      "knobOver": "slider_knob_over",
+      "knobDown": "slider_knob_down",
+      "knobBefore": "slider_fill_artillery_amber"
+    },
+    "reactor-thrusters": {
+      "background": "slider_track_brass",
+      "knob": "slider_knob_brass",
+      "knobOver": "slider_knob_over",
+      "knobDown": "slider_knob_down",
+      "knobBefore": "slider_fill_thrusters_emerald"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle": {
+    "default-horizontal": {
+      "background": "gauge_temp_track",
+      "knobBefore": "gauge_temp_fill_nominal"
+    },
+    "core-temp": {
+      "background": "gauge_temp_track",
+      "knobBefore": "gauge_temp_fill_nominal"
+    },
+    "core-temp-critical": {
+      "background": "gauge_temp_track",
+      "knobBefore": "gauge_temp_fill_critical"
+    },
+    "cargo-tonnage": {
+      "background": "bar_tonnage_track",
+      "knobBefore": "bar_tonnage_fill"
+    },
+    "braking-distance": {
+      "background": "bar_tonnage_track",
+      "knobBefore": "bar_braking_fill",
+      "knob": "marker_stopping_threshold"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
+    "default": {
+      "background": "panel_brass_deck",
+      "titleFont": "title-font",
+      "titleFontColor": "brass_light"
+    },
+    "crt-monitor": {
+      "background": "panel_crt_screen",
+      "titleFont": "mono-font",
+      "titleFontColor": "crt_phosphor_green"
+    },
+    "warning-modal": {
+      "background": "panel_modal_warning",
+      "titleFont": "title-font",
+      "titleFontColor": "critical_crimson",
+      "stageBackground": "dialog_dim_overlay"
+    },
+    "track-switcher-overlay": {
+      "background": "overlay_track_switcher_warning",
+      "titleFont": "title-font",
+      "titleFontColor": "hazard_yellow"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+    "default": {
+      "background": "panel_iron_inset",
+      "vScroll": "scroll_track_iron",
+      "vScrollKnob": "scroll_knob_brass",
+      "hScroll": "scroll_track_iron",
+      "hScrollKnob": "scroll_knob_brass"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle": {
+    "default": {
+      "background": "touchpad_ring_brass",
+      "knob": "touchpad_knob_brass"
+    }
+  }
+}

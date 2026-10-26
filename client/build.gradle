@@ -1,0 +1,49 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+
+group = 'com.chronoconvoy'
+version = '0.1.0-SNAPSHOT'
+
+ext {
+    gdxVersion = '1.12.1'
+    junitVersion = '5.10.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api "com.badlogicgames.gdx:gdx:${gdxVersion}"
+    api "com.badlogicgames.gdx:gdx-box2d:${gdxVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-headless:${gdxVersion}"
+    runtimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+    runtimeOnly "com.badlogicgames.gdx:gdx-box2d-platform:${gdxVersion}:natives-desktop"
+
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    testRuntimeOnly "com.badlogicgames.gdx:gdx-platform:${gdxVersion}:natives-desktop"
+    testRuntimeOnly "com.badlogicgames.gdx:gdx-box2d-platform:${gdxVersion}:natives-desktop"
+}
+
+application {
+    mainClass = 'com.chronoconvoy.client.HeadlessConvoyRunner'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+    systemProperty 'java.awt.headless', 'true'
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+}
