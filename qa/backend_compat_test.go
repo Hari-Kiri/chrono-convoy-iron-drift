@@ -21,6 +21,7 @@ type BackendAction struct {
 	ShieldsWatts   int    `json:"shields_watts,omitempty"`
 	ArtilleryWatts int    `json:"artillery_watts,omitempty"`
 	ThrustersWatts int    `json:"thrusters_watts,omitempty"`
+	TargetRaiderID string `json:"target_raider_id,omitempty"`
 	BranchID       string `json:"branch_id,omitempty"`
 	CommodityID    string `json:"commodity_id,omitempty"`
 	Quantity       int    `json:"quantity,omitempty"`

@@ -113,6 +113,9 @@ func (s *Server) registerRoutes() {
 
 	// [BE-02]: Modular Carriage Blueprints Catalog (MongoDB schema)
 	v1.Get("/blueprints/carriages", s.handleGetCarriageBlueprints)
+
+	// [Sprint 2 v1.0.0 Release]: Unified Release Status, PostgreSQL Ledger & Oasis Market Health
+	v1.Get("/release/status", s.handleGetReleaseStatus)
 }
 
 func callerPlayerID(c *fiber.Ctx) string {
@@ -442,5 +445,46 @@ func (s *Server) handleGetCarriageBlueprints(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"blueprints": bps,
 		"count":      len(bps),
+	})
+}
+
+func (s *Server) handleGetReleaseStatus(c *fiber.Ctx) error {
+	ctx, cancel := context.WithTimeout(c.UserContext(), 3*time.Second)
+	defer cancel()
+
+	dbHealth := s.ledgerRepo.GetDatabaseHealth(ctx)
+	snaps, actorErr := s.supervisor.GetAllHubSnapshots(ctx)
+
+	hubMap := make(map[string]actor.HubMarketSnapshot, len(snaps))
+	for _, snap := range snaps {
+		hubMap[snap.HubID] = snap
+		s.docStore.SaveOasisSnapshot(snap)
+	}
+
+	overallStatus := "ok"
+	httpStatus := fiber.StatusOK
+	if !dbHealth.Connected || actorErr != nil {
+		overallStatus = "degraded"
+		httpStatus = fiber.StatusServiceUnavailable
+	}
+
+	oasisMarket := fiber.Map{
+		"hub_count":     len(snaps),
+		"hubs":          snaps,
+		"hydro_haven":   hubMap["hydro_haven"],
+		"iron_refinery": hubMap["iron_refinery"],
+		"aether_spire":  hubMap["aether_spire"],
+	}
+	if actorErr != nil {
+		oasisMarket["error"] = actorErr.Error()
+	}
+
+	return c.Status(httpStatus).JSON(fiber.Map{
+		"version":      "1.0.0",
+		"service":      "chrono-convoy-backend",
+		"status":       overallStatus,
+		"database":     dbHealth,
+		"oasis_market": oasisMarket,
+		"timestamp":    time.Now().UTC().Format(time.RFC3339),
 	})
 }

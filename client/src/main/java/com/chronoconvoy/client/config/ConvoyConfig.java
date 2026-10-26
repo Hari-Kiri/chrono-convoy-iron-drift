@@ -9,9 +9,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Data-driven configuration schema for Chrono-Convoy: Iron Drift (Sprint 1 DES-01 / CLI-01 / CLI-02).
- * Loads tunables from docs/design/convoy_config.json or client/assets/config/convoy_config.json when available,
- * falling back to deterministic Sprint 1 baseline values.
+ * Data-driven configuration schema for Chrono-Convoy: Iron Drift (Sprint 1 & 2 DES-01 / CLI-01 / CLI-02).
+ * Loads tunables from docs/design/convoy_config.json, client/assets/config/convoy_config.json, or
+ * classpath /config/convoy_config.json when available, falling back to deterministic baseline values.
  */
 public final class ConvoyConfig {
 
@@ -87,13 +87,13 @@ public final class ConvoyConfig {
     }
 
     /**
-     * Loads "../docs/design/convoy_config.json" or "assets/config/convoy_config.json"
-     * if present on disk, merging any defined fields over the defaults.
+     * Loads convoy_config.json from disk or classpath if present, merging any defined fields over defaults.
      */
     public static ConvoyConfig loadDefault() {
         ConvoyConfig config = new ConvoyConfig();
         String[] candidatePaths = {
             "assets/config/convoy_config.json",
+            "client/assets/config/convoy_config.json",
             "../docs/design/convoy_config.json",
             "docs/design/convoy_config.json",
             "/workspace/chrono-convoy-iron-drift/docs/design/convoy_config.json"
@@ -104,10 +104,17 @@ public final class ConvoyConfig {
                 try (InputStream in = new FileInputStream(file)) {
                     String jsonText = new String(in.readAllBytes(), StandardCharsets.UTF_8);
                     config.applyJsonOverrides(jsonText);
-                    break;
+                    return config;
                 } catch (Exception ignored) {
                 }
             }
+        }
+        try (InputStream cpIn = ConvoyConfig.class.getResourceAsStream("/config/convoy_config.json")) {
+            if (cpIn != null) {
+                String jsonText = new String(cpIn.readAllBytes(), StandardCharsets.UTF_8);
+                config.applyJsonOverrides(jsonText);
+            }
+        } catch (Exception ignored) {
         }
         return config;
     }

@@ -13,7 +13,7 @@ import (
 
 func openTestRepo(t *testing.T) *PostgresLedgerRepository {
 	t.Helper()
-	repo, err := NewPostgresLedgerRepository("host=/var/run/postgresql user=box dbname=chrono_convoy sslmode=disable")
+	repo, err := NewPostgresLedgerRepository("postgres://box@localhost:5432/chrono_convoy?sslmode=disable")
 	if err != nil {
 		t.Fatalf("failed to connect to local PostgreSQL chrono_convoy: %v", err)
 	}
